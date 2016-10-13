@@ -1,0 +1,8 @@
+{htxt id="full_name"}
+{ts}The contact name  should be divided in two parts, the first name and last name.{/ts}
+{/htxt}
+{htxt id="date_filter"}
+{ts}
+Get a list of memberships for dates which are in range of from and to dates.
+{/ts}
+{/htxt}

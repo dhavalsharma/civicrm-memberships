@@ -1,0 +1,88 @@
+<div class="crm-container">
+  <div crm-ui-debug="myContact"></div>
+  <div crm-ui-debug="allMemberships"></div>
+  <div crm-ui-debug="filterdates"></div>
+<!--
+  <form name="myForm" crm-ui-id-scope>
+
+    <div class="help">
+      <p>{{ts('This is an auto-generated skeletal page.')}}</p>
+
+      <p>{{ts('To view more debugging information, edit the URL and include "?angularDebug=1".')}}</p>
+    </div>
+
+    <div crm-ui-accordion="{title: ts('Greeting')}">
+      <p ng-show="myContact.first_name">{{ ts('Hello, %1.', {1: myContact.first_name}) }}</p>
+
+      <p ng-show="!myContact.first_name">{{ ts('Hello, stranger.') }}</p>
+    </div>
+
+    <div crm-ui-accordion="{title: ts('About Me')}">
+      <div class="crm-block">
+        <div class="crm-group">
+          <div crm-ui-field="{name: 'myForm.first_name', title: ts('Name'), help: hs('full_name')}">
+            <input
+              crm-ui-id="myForm.first_name"
+              name="first_name"
+              ng-model="myContact.first_name"
+              class="crm-form-text"
+              placeholder="{{ts('First')}}"
+              />
+            <input
+              crm-ui-id="myForm.last_name"
+              name="last_name"
+              ng-model="myContact.last_name"
+              class="crm-form-text"
+              placeholder="{{ts('Last')}}"
+              />
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button ng-click="save()">{{ts('Save')}}</button>
+      </div>
+    </div>
+
+  </form>
+-->
+  <div crm-ui-accordion="{title: ts('Memberships list')}">
+    <form name="myForm" crm-ui-id-scope>
+      <div class="crm-block">
+        <div class="crm-group">    
+          <div crm-ui-field="{ title: ts('Filter by dates'), help: hs('date_filter')}">
+            <label>{{ts('From')}}</label>
+            <input crm-ui-datepicker="{time: false}" ng-model="filterdates.start" 
+              crm-ui-id="myForm.start"/>
+            <label>{{ts('To')}}</label>
+            <input crm-ui-datepicker="{time: false}" ng-model="filterdates.end" 
+              crm-ui-id="myForm.end"/>
+          </div>
+        </div>
+      </div>
+    </form>
+    <table class="display">
+    <thead>
+    <tr>
+      <th>{{ts('Name')}}</th>
+      <th>{{ts('Source')}}</th>
+      <th>{{ts('Start Date')}}</th>
+      <th>{{ts('End Date')}}</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>    
+      <tr ng-repeat="m in allMemberships.values | dateRange:filterdates "      
+          class="crm-entity"
+          ng-class-even="'even-row even'"
+          ng-class-odd="'odd-row odd'"
+      >
+        <td>{{m.membership_name}}</td>
+        <td>{{m.source}}</td>
+        <td>{{m.start_date}}</td>
+        <td>{{m.end_date}}</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+</div>
